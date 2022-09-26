@@ -11,12 +11,25 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
 
+// ? routes
 app.use("/api/users", UserRouter);
 app.use("/api/auth", AuthRouter);
 app.use("/api/comments", CommentRouter);
 app.use("/api/videos", VideoRouter);
+
+
+// ? middle wares for handling error
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Something went wrong!";
+  return res.status(status).json({
+    success: false,
+    status,
+    message,
+  });
+});
 
 app.get("/", (req, res) => res.send("hello api.."));
 
