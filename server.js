@@ -6,12 +6,14 @@ import UserRouter from "./routes/user.js";
 import AuthRouter from "./routes/auth.js";
 import CommentRouter from "./routes/comment.js";
 import VideoRouter from "./routes/video.js";
+import cookieParser from "cookie-parser"
 
 dotenv.config();
 const PORT = process.env.PORT;
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser())
 
 // ? routes
 app.use("/api/users", UserRouter);
