@@ -18,11 +18,9 @@ const UserSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
     },
     subscribers: {
       type: String,
-      required: true,
     },
     subscribedUsers: {
       type: [String],
