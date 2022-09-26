@@ -18,9 +18,13 @@ const UserSchema = mongoose.Schema(
     },
     image: {
       type: String,
+      required: true,
+      default: "",
     },
     subscribers: {
       type: String,
+      default: 0,
+      required: true,
     },
     subscribedUsers: {
       type: [String],
