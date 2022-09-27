@@ -2,8 +2,12 @@
 import express from "express";
 import {
   addVideo,
+  addView,
   deleteVideo,
   getVideo,
+  random,
+  sub,
+  trend,
   updateVideo,
 } from "../controllers/video.js";
 const VideoRouter = express.Router();
@@ -22,13 +26,16 @@ VideoRouter.delete("/:id", verifyToken, deleteVideo);
 VideoRouter.get("/:id", getVideo);
 
 // ? increasing video view
-VideoRouter.put("/view/:id")
+VideoRouter.put("/view/:id",addView)
 
 // ? random video
-VideoRouter.get("/sub");
+VideoRouter.get("/random",random);
 
 // ? getting subscribed videos
-VideoRouter.get("/sub");
+VideoRouter.get("/sub",sub);
+
+// ? getting trending videos
+VideoRouter.get("/trend",trend);
 
 
 export default VideoRouter;

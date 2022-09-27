@@ -45,10 +45,10 @@ export const getUser = asyncHandler(async (req, res) => {
 // ? subscribing to a channel
 export const subscribe = asyncHandler(async (req, res) => {
   try {
-    await User.findById(req.user.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       $push: { subscribedUsers: req.params.id },
     });
-    await User.findById(req.params.id, {
+    await User.findByIdAndUpdate(req.params.id, {
       $inc: { subscribers: 1 },
     });
       res.status(200).json({message:"subscription successfull"})
@@ -60,7 +60,7 @@ export const subscribe = asyncHandler(async (req, res) => {
 // ? unsubscribing to a channel
 export const unsubscribe = asyncHandler(async (req, res) => {
   try {
-    await User.findById(req.user.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       $pull: { subscribedUsers: req.params.id },
     });
     await User.findById(req.params.id, {
